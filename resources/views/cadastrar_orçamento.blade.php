@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <title>Oficina 2.0</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+        <a class="btn btn-lg text-white" href="/" role="button">Home</a>
+        <a class="btn btn-lg text-white" href="/lista" role="button">Lista de orçamentos</a>
+    </nav>
+    <div class="container d-flex justify-content-center text-center bg-light rounded">
+        <div class="col-md-6">
+            <h1>Fazer Orçamento</h1>
+            <form action="{{route('orcamento.create')}}" method="post" id="cadastro">
+                @csrf
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="cliente">Cliente</span>
+                    </div>
+                    <input type="text" name="cliente" class="form-control" placeholder="Nome do cliente" aria-describedby="cliente">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="vendedor">Vendedor</span>
+                    </div>
+                    <input type="text" name="vendedor" class="form-control" placeholder="Nome do vendedor" aria-describedby="vendedor">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="data">Data</span>
+                    </div>
+                    <input type="date" name="data" class="form-control" placeholder="Data do orçamento" aria-describedby="data">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="hora">Hora</span>
+                    </div>
+                    <input type="time" name="hora" class="form-control" placeholder="Hora do orçamento" aria-describedby="hora">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="valor">Valor</span>
+                    </div>
+                    <input type="number" step="0.01" name="valor" class="form-control" placeholder="Valor do orçamento" aria-describedby="valor">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="cliente">Descrição</span>
+                    </div>
+                    <textarea class="form-control" aria-describedby="cliente"  form="cadastro" name="descricao"></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="SUBMETER" class="btn btn-primary">
+                </div>
+            </form>
+        </div>
+        
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  </body>
+</html>

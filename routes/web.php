@@ -14,5 +14,24 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
+
+Route::get('/cadastrar', function(){
+    return view('cadastrar_orçamento');
+});
+
+Route::get('/lista', [
+    'uses' => 'Orcamento_controller@show',
+    'as' => 'orcamento.show'
+]);
+
+Route::post('/create', [
+    'uses' => 'Orcamento_controller@create',
+    'as' => 'orcamento.create'
+]);
+
+Route::post('/filtrate', [
+    'uses' => 'Orcamento_controller@filtrate',
+    'as' => 'orcamento.filtrate'
+]);

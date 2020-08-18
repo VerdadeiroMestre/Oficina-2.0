@@ -1,0 +1,1 @@
+Para rodar o projeto é necessario criar um banco de dados SQL com o nome "oficina" e importar a tabela "orcamentos" que está na pasta do projeto. Caso possua senha, modificar os campos "DB_USERNAME" e "DB_PASSWORD" no arquivo ".env" presente na rais do projeto.

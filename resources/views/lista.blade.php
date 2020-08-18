@@ -15,8 +15,21 @@
         <a class="btn btn-lg text-white" href="/" role="button">Home</a>
         <a class="btn btn-lg text-white" href="/cadastrar" role="button">Cadastrar orçamento</a>
     </nav>
-    <div class="row container-fluid justify-content-center text-center">
-        <div class="card">
+    <div class="container justify-content-center text-center">
+      @if (session('erro') === true)
+        <div class="d-flex justify-content-center text-left">
+            <div class="alert alert-danger alert-dismissible w-50 float-center m-4" role="dialog">
+                <h4 class="alert-heading">Ouve algum erro</h4>
+                <span>Não foi possivel filtrar os dados, os campos não foram preenchidos corretamente.</span>
+                <hr>
+                <span>Tente novamente.</span>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+      @endif
+        <div class="card m-auto col-8">
           <div class=" card-header">
             <Label for="option">Filtrar por:</Label>
             <button class="btn btn-info mx-2" data-toggle="collapse" data-target="#collapseData" aria-expanded="false" aria-controls="collapseData">
@@ -30,82 +43,77 @@
             </button>
             <a class="btn btn-warning " href="/lista" role="button">Reset</a>
           </div>
-          <div class="card-body" id="accordion">
+          <div class="card-body " id="accordion" style="height:100px;">
             <div id="collapseData" class="collapse " data-parent="#accordion">
-            <form action="{{route('orcamento.filtrate')}}" method="post">
-            @csrf
-              <div class="form-group bg-light form-control form-control-lg col m-auto">
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="start">Inicio</span>
-                    </div>
-                    <input type="date" name="start" class="form-control" placeholder="Inicio do periodo" aria-describedby="start">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="end">Fim</span>
-                    </div>
-                    <input type="date" name="end" class="form-control" placeholder="Fim do periodo" aria-describedby="end">
-                    <input type="submit" value="FILTRAR" class="btn btn-warning mx-2">
-                </div>
-               
-              </div>
-            </form>
+              <form action="{{route('orcamento.filtrate')}}" method="post">
+              @csrf
+                  <div class="input-group">
+                      <div class="input-group-prepend">
+                          <span class="input-group-text" id="start">Inicio</span>
+                      </div>
+                      <input type="date" name="start" class="form-control" placeholder="Inicio do periodo" aria-describedby="start">
+                      <div class="input-group-prepend">
+                          <span class="input-group-text" id="end">Fim</span>
+                      </div>
+                      <input type="date" name="end" class="form-control" placeholder="Fim do periodo" aria-describedby="end">
+                      <input type="submit" value="FILTRAR" class="btn btn-warning mx-2">
+                  </div>
+              </form>
             </div>
-            <div id="collapseCliente" class="collapse " data-parent="#accordion">
-            <form action="{{route('orcamento.filtrate')}}" method="post">
-            @csrf
-              <div class="form-group bg-light form-control form-control-lg col m-auto">
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="cliente">Cliente</span>
-                    </div>
-                    <input type="text" name="cliente" class="form-control" placeholder="Nome do cliente" aria-describedby="cliente">
-                    <input type="submit" value="FILTRAR" class="btn btn-warning mx-2">
-                </div>
-                
-              </div>
-            </form>
+            <div id="collapseCliente" class="collapse" data-parent="#accordion">
+              <form action="{{route('orcamento.filtrate')}}" method="post">
+              @csrf
+                  <div class="input-group">
+                      <div class="input-group-prepend">
+                          <span class="input-group-text" id="cliente">Cliente</span>
+                      </div>
+                      <input type="text" name="cliente" class="form-control" placeholder="Nome do cliente" aria-describedby="cliente">
+                      <input type="submit" value="FILTRAR" class="btn btn-warning mx-2">
+                  </div>
+              </form>
             </div>
             <div id="collapseVendedor" class="collapse" data-parent="#accordion">
-            <form action="{{route('orcamento.filtrate')}}" method="post">
-            @csrf
-              <div class="form-group bg-light form-control form-control-lg col m-auto">
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="vendedor">Vendedor</span>
-                    </div>
-                    <input type="text" name="vendedor" class="form-control" placeholder="Nome do Vendedor" aria-describedby="cliente">
-                    <input type="submit" value="FILTRAR" class="btn btn-warning mx-2">
-                </div>
-                
-              </div>
-            </form>
+              <form action="{{route('orcamento.filtrate')}}" method="post">
+              @csrf
+                  <div class="input-group m-auto">
+                      <div class="input-group-prepend">
+                          <span class="input-group-text" id="vendedor">Vendedor</span>
+                      </div>
+                      <input type="text" name="vendedor" class="form-control" placeholder="Nome do Vendedor" aria-describedby="cliente">
+                      <input type="submit" value="FILTRAR" class="btn btn-warning mx-2">
+                  </div>
+              </form>
             </div>
           </div>
             
-        </div>
-
-        <table class="table table-striped table-hover">
-            <tr>
-                <th>Id</th>
-                <th>Cliente</th>
-                <th>Vendedor</th>
-                <th>Data</th>
-                <th>Hora</th>
-                <th>Valor</th>
-                <th>Descricao</th>
-            </tr>
-            @foreach($orcamentos as $orcamento)
-            <tr>
-                <th>{{$orcamento->id}}</th>
-                <th>{{$orcamento->cliente}}</th>
-                <th>{{$orcamento->vendedor}}</th>
-                <th>{{$orcamento->data}}</th>
-                <th>{{$orcamento->hora}}</th>
-                <th>{{$orcamento->valor}}</th>
-                <th>{{$orcamento->descricao}}</th>
-            </tr>
-            @endforeach
-        </table>
+          </div>
+          <div class="col-12 justify-content-center d-flex">
+            <table class="table table-striped table-hover table-bordered col-8">
+              <tr class="thead-dark">
+                  <th>Data</th>
+                  <th>Hora</th>
+                  <th>Cliente</th>
+                  <th>Vendedor</th>
+                  <th>Valor</th>
+                  <th>Descricao</th>
+              </tr>
+            
+              @foreach($orcamentos as $orcamento)
+              <tr>
+                  <th>{{$orcamento->data}}</th>
+                  <th>{{$orcamento->hora}}</th>
+                  <th>{{$orcamento->cliente}}</th>
+                  <th>{{$orcamento->vendedor}}</th>
+                  <th>R${{$orcamento->valor}}</th>
+                  <th>{{$orcamento->descricao}}</th>
+              </tr>
+              @endforeach
+            </table>
+          </div>
+        
+          <div class="row">
+            <div class="col-12 justify-content-center d-flex">{{$orcamentos->links()}}</div>
+          </div>
     </div>
 
     <!-- Optional JavaScript -->

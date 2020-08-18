@@ -7,10 +7,10 @@ use Faker\Generator as Faker;
 
 $factory->define(Orcamento::class, function (Faker $faker) {
     return [
-        'cliente' => $faker->Name(),
-        'vendedor' => $faker->Name(),
-        'descricao' => $faker->sentence($nbWords = 8, $variableNbWords = true),
-        'valor' => $faker->numberBetween($min = 1500, $max = 6000),
+        'cliente' => $faker->firstName(),
+        'vendedor' => $faker->firstName(),
+        'descricao' => $faker->realText($maxNbChars = 100, $indexSize = 2),
+        'valor' => $faker->randomFloat($nbMaxDecimals = 2, $min = 300, $max = 16000),
         'data' => $faker->date($format = 'Y-m-d', $max = 'now'),
         'hora' => $faker->time($format = 'H:i:s', $max = 'now'),
 

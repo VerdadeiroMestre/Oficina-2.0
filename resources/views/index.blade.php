@@ -18,7 +18,7 @@
             <hr class="my-4">
             
             <a class="btn btn-primary btn-lg" href="/cadastrar" role="button">Cadastrar orçamento</a>
-            <a class="btn btn-primary btn-lg" href="/lista" role="button">Ver lista de orçamentos</a>
+            <a class="btn btn-primary btn-lg" href="/lista" role="button">Consultar orçamentos</a>
         </div>
         
     </div>

@@ -11,11 +11,16 @@
     <title>Oficina 2.0</title>
   </head>
   <body>
+  <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-dark">
         <a class="btn btn-lg text-white" href="/" role="button">Home</a>
         <a class="btn btn-lg text-white" href="/cadastrar" role="button">Cadastrar orçamento</a>
     </nav>
+  <!-- /Navbar -->  
+
+  
     <div class="container justify-content-center text-center">
+      <!-- Mensagem de erro -->
       @if (session('erro') === true)
         <div class="d-flex justify-content-center text-left">
             <div class="alert alert-danger alert-dismissible w-50 float-center m-4" role="dialog">
@@ -29,6 +34,9 @@
             </div>
         </div>
       @endif
+      <!-- /Mensagem de erro -->
+
+      <!-- Filtrar -->
         <div class="card m-auto col-8">
           <div class=" card-header">
             <Label for="option">Filtrar por:</Label>
@@ -85,7 +93,10 @@
               </form>
             </div>
           </div>
-            
+
+          <!-- /Filtrar -->
+
+          <!-- Tabela com os dados -->
           </div>
           <div class="col-12 justify-content-center d-flex">
             <table class="table table-striped table-hover table-bordered col-8">
@@ -114,6 +125,8 @@
           <div class="row">
             <div class="col-12 justify-content-center d-flex">{{$orcamentos->links()}}</div>
           </div>
+
+          <!-- /Tabela com os dados -->
     </div>
 
     <!-- Optional JavaScript -->

@@ -44,13 +44,19 @@ class Orcamento_controller extends Controller
     }
 
     /*
-    *   Metodo que mostra os pedidos
+    *   Os metodos abaixo pega os dados do banco de dados e os envia para a pagina que lista esses dados
     */
+
+    
     public function show(){
         $orcamentos = DB::table('orcamentos')->orderByDesc('data')->paginate(15);
         return view('lista',['orcamentos' => $orcamentos]);
     }
 
+
+    /**
+     * Filtra os dados baseado na requisição do usuário
+     */
     public function filtrate(Request $request){
         if($request['cliente']){
             

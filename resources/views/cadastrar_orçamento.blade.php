@@ -11,11 +11,16 @@
     <title>Oficina 2.0</title>
   </head>
   <body>
+
+  <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-dark">
         <a class="btn btn-lg text-white" href="/" role="button">Home</a>
         <a class="btn btn-lg text-white" href="/lista" role="button">Lista de orçamentos</a>
     </nav>
 
+    <!-- /Navbar -->
+
+    <!-- Mensagem de erro -->
     @if ($errors->any())
     <div class="d-flex justify-content-center">
         <div class="alert alert-danger alert-dismissible w-50 float-center m-4" role="dialog">
@@ -30,7 +35,9 @@
     </div>
         
     @endif
+<!-- /Mensagem de erro -->
 
+<!-- Mensagem de sucesso -->
     @if (session('success') === true)
     <div class="d-flex justify-content-center">
         <div class="alert alert-success alert-dismissible w-50 float-center m-4" role="dialog">
@@ -43,7 +50,9 @@
         </div>
     </div>
     @endif
+<!-- /Mensagem de sucesso -->
 
+<!-- Formulario de cadastro -->
     <div class="container d-flex justify-content-center bg-light rounded">
         <div class="card">
             <div class="card-header">
@@ -99,46 +108,7 @@
         </div>
         
     </div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="success" tabindex="-1" role="dialog" aria-labelledby="successLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="successLabel">Orçamento salvo</h5>
-                </div>
-                <div class="modal-body">
-                    Orçamento salvo com sucesso!
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" form="cadastro">
-                        Ok
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Example starter JavaScript for disabling form submissions if there are invalid fields
-        (function() {
-        'use strict';
-        window.addEventListener('load', function() {
-            // Fetch all the forms we want to apply custom Bootstrap validation styles to
-            var forms = document.getElementsByClassName('needs-validation');
-            // Loop over them and prevent submission
-            var validation = Array.prototype.filter.call(forms, function(form) {
-            form.addEventListener('submit', function(event) {
-                if (form.checkValidity() === false) {
-                event.preventDefault();
-                event.stopPropagation();
-                }
-                form.classList.add('was-validated');
-            }, false);
-            });
-        }, false);
-        })();
-    </script>
+    <!-- /Formulario de cadastro -->
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

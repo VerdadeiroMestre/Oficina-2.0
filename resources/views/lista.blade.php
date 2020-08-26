@@ -37,7 +37,7 @@
       <!-- /Mensagem de erro -->
 
       <!-- Filtrar -->
-        <div class="card m-auto col-8">
+        <div class="card m-auto col-10">
           <div class=" card-header">
             <Label for="option">Filtrar por:</Label>
             <button class="btn btn-info mx-2" data-toggle="collapse" data-target="#collapseData" aria-expanded="false" aria-controls="collapseData">
@@ -99,7 +99,7 @@
           <!-- Tabela com os dados -->
           </div>
           <div class="col-12 justify-content-center d-flex">
-            <table class="table table-striped table-hover table-bordered col-8">
+            <table class="table table-striped table-hover table-bordered col-10">
               <tr class="thead-dark">
                   <th>Data</th>
                   <th>Hora</th>
@@ -107,16 +107,24 @@
                   <th>Vendedor</th>
                   <th>Valor</th>
                   <th>Descricao</th>
+                  <th></th>
               </tr>
-            
               @foreach($orcamentos as $orcamento)
               <tr>
-                  <th>{{$orcamento->data}}</th>
-                  <th>{{$orcamento->hora}}</th>
-                  <th>{{$orcamento->cliente}}</th>
-                  <th>{{$orcamento->vendedor}}</th>
-                  <th>R${{$orcamento->valor}}</th>
-                  <th>{{$orcamento->descricao}}</th>
+                  <td>{{$orcamento->data}}</td>
+                  <td>{{$orcamento->hora}}</td>
+                  <td>{{$orcamento->cliente}}</td>
+                  <td>{{$orcamento->vendedor}}</td>
+                  <td>R${{$orcamento->valor}}</td>
+                  <td>{{$orcamento->descricao}}</td>
+                  <td class="d-flex h-100">
+                      <a class="btn btn-sm btn-primary text-white m-auto" href="{{route('orcamento.editar',['orcamento' => $orcamento])}}">EDITAR</a>
+                      <form class="d-inline m-auto" action="{{route('orcamento.destroy',['orcamento' => $orcamento])}}" method="POST">
+                        @method('delete')
+                        @csrf
+                        <button class="btn btn-sm btn-danger text-white" type="submit">DELETAR</button>
+                      </form>
+                  </td>
               </tr>
               @endforeach
             </table>
